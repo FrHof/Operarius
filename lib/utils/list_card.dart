@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'colors.dart';
+import 'task.dart';
 
 const double circularRadius = 10.0;
 class ListCard extends StatefulWidget {
-  final String title;
-  const ListCard(this.title);
+  final Task task;
+  const ListCard(this.task);
   @override
   _ListCardState createState() => _ListCardState();
 }
@@ -15,8 +16,6 @@ class _ListCardState extends State<ListCard> {
   Widget build(BuildContext context) {
     return Expanded(
         child : Container(
-
-          child: Text(widget.title),
           margin: const EdgeInsets.only(top: 5.0, bottom: 5.0, left: 5.0, right: 5.0),
           decoration: const BoxDecoration(
             color: ApplicationColors.color1,
@@ -26,6 +25,16 @@ class _ListCardState extends State<ListCard> {
                 bottomLeft: Radius.circular(circularRadius),
                 bottomRight: Radius.circular(circularRadius)
             ),
+          ),
+        child: Row(
+          children: [
+            Text(widget.task.title),
+            Text(widget.task.deadline.toString()),
+            Text(widget.task.priority.toString()),
+            Icon(categoryIcons[widget.task.category],
+            color: colorsIcons[widget.task.category],
+            ),
+          ],
         ),
       )
     );
